@@ -1,0 +1,81 @@
+
+                           ===========================
+                           ENSF545 Intro to VR - Notes
+                           ===========================
+
+
+============================================================================================
+Tuesday, September 11th
+
+Lab is in ENA006
+
+Thursday => We will meet in the theaters (ST055), then move to lab for demos
+Then we will move to ENA006
+   => Should have 24hr access to lab
+
+There are 8 workstations available (#9 - 16)
+   => Noticably different
+
+Group into teams of 2x => Jennifer
+
+In the team:
+   - 3 Lab Assignments (2 weeks long)
+   - 1 Oral Presentation
+   - 1 Course Project
+
+Prof is available during the lab for questions
+Reading materials are on Blackboard
+
+What is VR?
+   - Users R Important
+   - VR = VE (Virtual Environment)
+
+Tasks - what people actually want to do - important
+
+Graphics pipeline - Application => Geometry => Rasterizer
+
+
+
+============================================================================================
+Thursday, September 13th
+
+First lab posted next Tuesday, have two weeks
+Don't have to show up during lab session, but prof will be there to help
+
+Might have access to a cool VR lab for the project (maybe)
+
+CAVE = Computer Automated Virtual Environment
+RAVE = Reconfigurable Automated Virtual Environment
+
+Haptic device => force feedback
+Have low-precision haptic devices in ENA006
+
+The CAVE:
+   - Keep in mind - what else could this tech be used for?
+                  - what are the basic technologies required?
+
+
+============================================================================================
+Tuesday, September 18th
+
+Mathematics - Describing the Scene
+
+Local vs World Coordinates
+   - Exactly what you think they are.
+
+Right vs Left Handed
+   - In left-handed coordinate systems, Z goes into the screen (like OpenGL)
+
+Vectors
+   - Points are not vectors; points are positions in space, a vector is a difference in space
+   - Points don't necessarily have a direction; vectors do.
+   - You can't add points
+
+Vector Operations
+   - Prof defines length as "modulus" (even though she writes it as absolute value)
+   - Dot product is a scalar
+      - Dot product of perpendicular vectors is zero
+   - Cross product is perpendicular
+
+Equations of Shapes
+   - Lines are 
