@@ -1,0 +1,16 @@
+CC = g++
+FLAGS32 = -n32
+#FLAGS64 = -64
+
+CAVEBASE = ..
+#CAVEBASE = /apps/home/marbach/KNAVE
+#CAVEBASE = /usr/local/CAVE
+
+INCS = -I$(CAVEBASE)/include
+LIBS = -L$(CAVEBASE)/lib32 -lcave_ogl -L/usr/lib32 -lglut -lGL -lGLU -lm -L/usr/X11R6/lib -lX11 -lXext -lXmu -lXt
+
+all: caveTest
+
+caveTest: Makefile caveMain.o $(CAVEBASE)/lib32/libcave_ogl.a
+	$(CC) -c $(FLAGS32) $(INCS) caveMain.cpp -o caveMain.o
+	$(CC) -v -o caveTest caveMain.o $(LIBS)
