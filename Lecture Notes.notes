@@ -5,7 +5,7 @@
 
 
 ============================================================================================
-Tuesday, September 11th
+General Introduction
 
 Lab is in ENA006
 
@@ -34,11 +34,6 @@ Tasks - what people actually want to do - important
 
 Graphics pipeline - Application => Geometry => Rasterizer
 
-
-
-============================================================================================
-Thursday, September 13th
-
 First lab posted next Tuesday, have two weeks
 Don't have to show up during lab session, but prof will be there to help
 
@@ -55,8 +50,10 @@ The CAVE:
                   - what are the basic technologies required?
 
 
+
+
 ============================================================================================
-Tuesday, September 18th
+Mathematics - How to decribe the scene, and repress memories from MATH211
 
 Mathematics - Describing the Scene
 
@@ -77,5 +74,143 @@ Vector Operations
       - Dot product of perpendicular vectors is zero
    - Cross product is perpendicular
 
-Equations of Shapes
-   - Lines are 
+The General Transformation Matrix:
+   [ R1  R2  R3  T1 ]
+   [ R4  R5  R6  T2 ]
+   [ R7  R8  R9  T3 ]
+   [ 0   0   0   1  ]
+
+   Recall that T* aren't actually the translation; they're affected by the rotation components
+
+More Matricies
+   - This is called a Homogeneous / Transform Matrix
+   - R is rotation/scale, T is translation
+
+So for just scaling:
+   R1, R5, R9 will be the 3D scale factor
+   All other variables will be zero
+
+   [ S1  0   0   0  ]
+   [ 0   S2  0   0  ]
+   [ 0   0   S3  0  ]
+   [ 0   0   0   1  ]
+
+For Translation:
+   Everything is identity, except the T components
+
+   [ 1   0   0   t1 ]
+   [ 0   1   0   t2 ]
+   [ 0   0   1   t3 ]
+   [ 0   0   0   1  ]
+
+   We use "small t" in this, because it isn't necessarily the same as big T in the
+   master matrix (due to rotation/scale/etc)
+
+Matrix Multiplication Order Matters!
+   Operations are resolved right-to-left.
+
+   i.e. (Rotation Matrix)(Translation Matrix) = (Translate THEN Rotate Matrix)
+
+How to tell what kind of transformation it is:
+   - If it's along the main diagonal, it's scale
+   - Otherwise, wherever the "1" is is the axis along which it's a rotation
+   - The T-components are translation
+
+How to Make a Rotation Matrix:
+   - Start with a zero-matrix
+   - Put a "1" in the identity point for the axis you want to rotate about
+
+      e.g. for y:
+      [ 0      0      0      0  ]
+      [ 0      1      0      0  ]
+      [ 0      0      0      0  ]
+      [ 0      0      0      1  ]
+
+   - Put some cosines along the diagonal
+
+      e.g. for y:
+      [ cos    0      0      0  ]
+      [ 0      1      0      0  ]
+      [ 0      0      cos    0  ]
+      [ 0      0      0      1  ]
+
+   - In the corners, put -sin/+sin for x and z, or +sin/-sin for y
+
+      e.g. for y:
+      [ cos    0      sin    0  ]
+      [ 0      1      0      0  ]
+      [ -sin   0      cos    0  ]
+      [ 0      0      0      1  ]
+
+Exercises
+   
+Calculate pi/2 about X, then pi/2 about Y, then pi/2 about Z
+
+   Rotate about x:
+   [ 1      0      0      0  ]
+   [ 0      cos    -sin   0  ]
+   [ 0      sin    cos    0  ]
+   [ 0      0      0      1  ]
+
+   Rotate about y:
+   [ cos    0      sin    0  ]
+   [ 0      1      0      0  ]
+   [ -sin   0      cos    0  ]
+   [ 0      0      0      1  ]
+
+   Rotate about z:
+   [ cos    -sin   0      0  ]
+   [ sin    cos    0      0  ]
+   [ 0      0      1      0  ]
+   [ 0      0      0      1  ]
+
+******
+You will need to remember how to do 4x4 matrix multiplication for the exam!
+
+******
+More specifically, you'll need to know:
+   - How to make the rotation matricies (remember y is backwards)
+   - How to make a scale matrix
+   - How to make a translation matrix
+   - How to multiply them (row by column; right-to-left)
+
+
+
+============================================================================================
+Welcome to VR Programming
+
+So what do you need?
+   - A camera perspective
+   - Some lights (spot and ambient)
+   - An actual object (shape, color, etc)
+
+Authoring a scene:
+   - Model geometry
+   - Define scene graph
+   - Define and link sensors
+   - Define actual functions
+   - Define networking
+
+Running a scene:
+   - Start simulation
+   - Read sensor data
+   - Update objects 
+   - Render scene
+   - Repeat, or exit simulation
+
+What is realtime?
+   - Human physical responses take ~100ms
+   - Human eyes can see at least 23fps; movies usually run at 30fps
+   - Minimum requirement for video part of simulation is 30fps
+
+   - When running with 3D, you actually need 60fps
+   - Which means you need 120Hz
+
+   - Touch?  About 25-50ms
+
+Let's start with vision.
+
+Major concepts of graphics:
+   - Scene (the actual things)
+   - View (looking into the things)
+   - Rendering (making the view show up)
