@@ -214,3 +214,167 @@ Major concepts of graphics:
    - Scene (the actual things)
    - View (looking into the things)
    - Rendering (making the view show up)
+
+What data structure do you use?
+   - A tree
+   - Consists of a root, with children, who have children, etc.
+
+The tree looks like:
+   The Scene (Root)
+      Lights
+      Proximity Objects
+         Person
+         Chair
+            Seat
+               Geometry
+               Material
+            Legs
+            Back
+            etc
+         Table
+         Tree
+      Distance Objects
+      Background
+
+What do Graphics APIs do?
+   Objects
+   Primitives (color, materials, etc)
+   Transformations (translations, rotations, etc)
+   Viewing
+   Input
+   Control (i.e. talking to the os)
+
+VR Graphics and Utility Libraries
+   Low-level:  OpenGL, Direct3D
+   UI:         GLUT, Tweak
+   Specific:   OpenHaptics
+   High-level: VRML, Open Inventor, Blender, etc
+
+OpenGL
+   Developed in early 90s
+   Standardized
+   Procedural model, OS independent
+
+   We're using OpenGL 2.0
+
+OpenGL Libraries
+   Gl/Glu are the actual utilities
+   GLUT is a helper lib
+
+OpenGL Model and the Process
+   Model - define a 3D object in space
+   Specify camera properties (position, orientation, projection, etc)
+
+   Process:
+      Transformation
+      Clipping
+      Projection 
+      Rasterization
+
+   OpenGL things start with "gl"
+
+Primatives / Polygon Meshes
+   Points, Lines, Polygons, Triangles, Quads, Quad Strip, Triangle Strip, Triangle Fan
+
+Ambient Light
+   Approximation of global illumination
+
+   Usually set for whole scene (Ia)
+   Each object reflects a proportion (Ka)
+
+   So far then Ir = KaIa
+
+Diffuse Light
+   Lambert's Law: Intensity is proportional to cos theta.
+
+   Light with both components:
+      Ir = Kd Ii ( n . l )
+
+      Kd = Intensity
+      Ii = Illumination
+      n = Normal Vector
+      l = Light Vector 
+
+Phong Specularity:
+   Use normal between eye and light instead of surface normal.
+
+   Ks Ii ( h . n )^m
+
+Quick Summary:
+   How to draw lines, geometry, etc
+   How to color objects
+   How to transform objects
+
+============================================================================================
+Advanced VR Programming
+
+**** Missed a chunk here :(
+
+Stereoscopy
+   - Two projections - left eye and right eye - on flat display
+   - Horizontal parallax (R - L)
+      R-L < 0; pops up out of screen 
+      R-L > 0; pops down into screen
+
+   - Similar terms for vertical parallax
+
+Viewing stereo pairs
+   - Uncrossed/parallel setup - when right eye sees right image, left eye sees left image
+   - Crossed setup - where right eye sees left image, left eye sees right image
+   - How to reverse sense of depth?
+
+One vs Two Cameras
+   Two Cameras 
+      - Spatial separation
+      - Each eye is a camera
+      - Set left and right cameras
+
+   One Camera
+      - Temporal separation
+      - One frustrum for each eye
+      - Draw left and right frustrums
+
+Ideals
+   - Congruence for left and right images (color, geometry, brightness)
+   - Avoidance of vertical parallax
+   - Wide parallax (large separation of the eyes)
+   - Maximum depth, but lowest parallax
+   - Further distance of viewer from the display, the greater the parallax that can be tolerated
+   - Minimize cross-talk (i.e. eyes seeing the wrong image)
+   - Use lowest parallax for required depth
+   - Parallax <= to the IPD
+   - Other cues!
+
+Problems that may occur
+   - FOV incorrect (between human and camera)
+   - Incorrect convertence (axes are not parallel)
+   - Geometry COP doesn't match optical COP
+
+OpenGL Display Lists
+   - Use glNewList() / do the drawing / glEndList()
+   - Then call glCallList() to redo the drawing in the future
+
+
+============================================================================================
+Output Devices 
+
+Output devices include:
+   - Graphics displays (i.e. visual feedback)
+   - Haptic interfaces (force and touch feedback)
+   - 3D Audio hardware
+
+Stereoscopic Displays 
+   - Two screens (autostereoscopic)
+   - Shutter glasses 
+   - Frequency (polarized)
+
+Things to consider with stereoscopic displays
+   - For what purposes is a stereoscopic display suitable?
+   - How to present 2 images of the same environment?
+   - How to deal with image discontinuity
+   - What are the cost?
+   - How does a stereo display differ in terms of performance?
+
+Types of displays
+   - LCD, CRT, Projector
+
