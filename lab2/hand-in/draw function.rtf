@@ -1,0 +1,351 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fprq1\fcharset0 Courier New;}{\f1\fswiss\fcharset0 Arial;}}
+{\colortbl ;\red0\green0\blue255;\red0\green128\blue0;}
+{\*\generator Msftedit 5.41.15.1515;}\viewkind4\uc1\pard\cf1\f0\fs20 void\cf0  draw(\cf1 void\cf0 )\par
+\{\par
+\par
+\tab\cf2 //printf( "Drawing.\\n" );\par
+\par
+\cf0\tab glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );\par
+\par
+\tab glMatrixMode( GL_MODELVIEW );\par
+\tab glPushMatrix();\par
+\par
+\tab\cf1 float\cf0  headPos[3];\par
+\tab\cf1 float\cf0  headVec[3];\par
+\par
+\tab CAVEGetPosition( CAVE_HEAD, headPos );\par
+\par
+\tab glPushMatrix();\par
+\par
+\tab glTranslatef( headPos[0], headPos[1], headPos[2] );\par
+\par
+\tab glDisable( GL_LIGHTING );\par
+\par
+\tab\cf2 //headLines\par
+\cf0\tab CAVEGetVector( CAVE_HEAD_FRONT, headVec );\par
+\tab glBegin( GL_LINES );\par
+\tab\tab glColor3f( 1,1,1 );\par
+\tab\tab glVertex3f( 0, 0, 0 );\par
+\tab\tab glVertex3f(headVec[0], headVec[1], headVec[2] );\par
+\tab glEnd();\par
+\tab CAVEGetVector( CAVE_HEAD_BACK, headVec );\par
+\tab glBegin( GL_LINES );\par
+\tab\tab glColor3f( 0.5,0.5,0.5 );\par
+\tab\tab glVertex3f( 0, 0, 0 );\par
+\tab\tab glVertex3f(headVec[0], headVec[1], headVec[2] );\par
+\tab glEnd();\par
+\tab CAVEGetVector( CAVE_HEAD_LEFT, headVec );\par
+\tab glBegin( GL_LINES );\par
+\tab\tab glColor3f( 1,1,1 );\par
+\tab\tab glVertex3f( 0, 0, 0 );\par
+\tab\tab glVertex3f(headVec[0], headVec[1], headVec[2] );\par
+\tab glEnd();\par
+\tab CAVEGetVector( CAVE_HEAD_RIGHT, headVec );\par
+\tab glBegin( GL_LINES );\par
+\tab\tab glColor3f( 0.5,0.5,0.5 );\par
+\tab\tab glVertex3f( 0, 0, 0 );\par
+\tab\tab glVertex3f(headVec[0], headVec[1], headVec[2] );\par
+\tab glEnd();\par
+\tab CAVEGetVector( CAVE_HEAD_UP, headVec );\par
+\tab glBegin( GL_LINES );\par
+\tab\tab glColor3f( 1,1,1 );\par
+\tab\tab glVertex3f( 0, 0, 0 );\par
+\tab\tab glVertex3f(headVec[0], headVec[1], headVec[2] );\par
+\tab glEnd();\par
+\tab CAVEGetVector( CAVE_HEAD_DOWN, headVec );\par
+\tab glBegin( GL_LINES );\par
+\tab\tab glColor3f( 0.5,0.5,0.5 );\par
+\tab\tab glVertex3f( 0, 0, 0 );\par
+\tab\tab glVertex3f(headVec[0], headVec[1], headVec[2] );\par
+\tab glEnd();\par
+\par
+\tab glPopMatrix();\par
+\par
+\tab\cf2 //wand lines\par
+\cf0\tab CAVEGetPosition( CAVE_WAND, headPos );\par
+\tab glPushMatrix();\par
+\tab glTranslatef( headPos[0], headPos[1], headPos[2] );\par
+\par
+\tab CAVEGetVector( CAVE_WAND_FRONT, headVec );\par
+\tab glBegin( GL_LINES );\par
+\tab\tab glColor3f( 0.99,0.99,0.99 );\par
+\tab\tab glVertex3f( 0, 0, 0 );\par
+\tab\tab glVertex3f(headVec[0], headVec[1], headVec[2] );\par
+\tab glEnd();\par
+\tab CAVEGetVector( CAVE_WAND_BACK, headVec );\par
+\tab glBegin( GL_LINES );\par
+\tab\tab glColor3f( 0.5,0.5,0.5 );\par
+\tab\tab glVertex3f( 0, 0, 0 );\par
+\tab\tab glVertex3f(headVec[0], headVec[1], headVec[2] );\par
+\tab glEnd();\par
+\tab CAVEGetVector( CAVE_WAND_LEFT, headVec );\par
+\tab glBegin( GL_LINES );\par
+\tab\tab glColor3f( 0.99,0.99,0.99 );\par
+\tab\tab glVertex3f( 0, 0, 0 );\par
+\tab\tab glVertex3f(headVec[0], headVec[1], headVec[2] );\par
+\tab glEnd();\par
+\tab CAVEGetVector( CAVE_WAND_RIGHT, headVec );\par
+\tab glBegin( GL_LINES );\par
+\tab\tab glColor3f( 0.5,0.5,0.5 );\par
+\tab\tab glVertex3f( 0, 0, 0 );\par
+\tab\tab glVertex3f(headVec[0], headVec[1], headVec[2] );\par
+\tab glEnd();\par
+\tab CAVEGetVector( CAVE_WAND_UP, headVec );\par
+\tab glBegin( GL_LINES );\par
+\tab\tab glColor3f( 0.99,0.99,0.99 );\par
+\tab\tab glVertex3f( 0, 0, 0 );\par
+\tab\tab glVertex3f(headVec[0], headVec[1], headVec[2] );\par
+\tab glEnd();\par
+\tab CAVEGetVector( CAVE_WAND_DOWN, headVec );\par
+\tab glBegin( GL_LINES );\par
+\tab\tab glColor3f( 0.5,0.5,0.5 );\par
+\tab\tab glVertex3f( 0, 0, 0 );\par
+\tab\tab glVertex3f(headVec[0], headVec[1], headVec[2] );\par
+\tab glEnd();\par
+\par
+\tab glPopMatrix();\par
+\par
+\par
+\tab CAVENavTransform();\par
+\par
+\tab glBegin( GL_QUADS );\par
+\par
+\tab glColor3f( 0.81, 0.81, 0.81 );\par
+\par
+\tab\cf1 for\cf0 ( \cf1 int\cf0  i=-50; i<50;++i )\{\par
+\tab\tab\cf1 int\cf0  shift = i%2;\par
+\tab\tab\cf1 for\cf0 ( \cf1 int\cf0  j=-50; j<50;j+=2 )\{\par
+\tab\tab\tab\par
+\tab\tab\tab glVertex3f( j+shift+1, 0,  i   );\par
+\tab\tab\tab glVertex3f( j+shift,   0,  i   );\par
+\tab\tab\tab glVertex3f( j+shift,   0,  i+1 );\par
+\tab\tab\tab glVertex3f( j+shift+1, 0,  i+1 );\par
+\tab\tab\tab\par
+\tab\tab\}\par
+\tab\}\par
+\par
+\tab glEnd();\par
+\par
+\tab\cf2 //navigated head-lines\par
+\cf0\tab CAVEGetPosition( CAVE_HEAD_NAV, headPos );\par
+\tab glPushMatrix();\par
+\tab glTranslatef( headPos[0], headPos[1], headPos[2] );\par
+\par
+\tab\cf2 //Begin test of head/wand vectors in navigated coords\par
+\cf0\tab CAVEGetVector( CAVE_HEAD_FRONT_NAV, headVec );\par
+\tab glBegin( GL_LINES );\par
+\tab\tab glColor3f( 1,1,1 );\par
+\tab\tab glVertex3f( 0, 0, 0 );\par
+\tab\tab glVertex3f(headVec[0], headVec[1], headVec[2] );\par
+\tab glEnd();\par
+\tab CAVEGetVector( CAVE_HEAD_BACK_NAV, headVec );\par
+\tab glBegin( GL_LINES );\par
+\tab\tab glColor3f( 0.5,0.5,0.5 );\par
+\tab\tab glVertex3f( 0, 0, 0 );\par
+\tab\tab glVertex3f(headVec[0], headVec[1], headVec[2] );\par
+\tab glEnd();\par
+\tab CAVEGetVector( CAVE_HEAD_LEFT_NAV, headVec );\par
+\tab glBegin( GL_LINES );\par
+\tab\tab glColor3f( 1,1,1 );\par
+\tab\tab glVertex3f( 0, 0, 0 );\par
+\tab\tab glVertex3f(headVec[0], headVec[1], headVec[2] );\par
+\tab glEnd();\par
+\tab CAVEGetVector( CAVE_HEAD_RIGHT_NAV, headVec );\par
+\tab glBegin( GL_LINES );\par
+\tab\tab glColor3f( 0.5,0.5,0.5 );\par
+\tab\tab glVertex3f( 0, 0, 0 );\par
+\tab\tab glVertex3f(headVec[0], headVec[1], headVec[2] );\par
+\tab glEnd();\par
+\tab CAVEGetVector( CAVE_HEAD_UP_NAV, headVec );\par
+\tab glBegin( GL_LINES );\par
+\tab\tab glColor3f( 1,1,1 );\par
+\tab\tab glVertex3f( 0, 0, 0 );\par
+\tab\tab glVertex3f(headVec[0], headVec[1], headVec[2] );\par
+\tab glEnd();\par
+\tab CAVEGetVector( CAVE_HEAD_DOWN_NAV, headVec );\par
+\tab glBegin( GL_LINES );\par
+\tab\tab glColor3f( 0.5,0.5,0.5 );\par
+\tab\tab glVertex3f( 0, 0, 0 );\par
+\tab\tab glVertex3f(headVec[0], headVec[1], headVec[2] );\par
+\tab glEnd();\par
+\par
+\tab glPopMatrix();\par
+\par
+\tab\cf2 //wand lines\par
+\cf0\tab CAVEGetPosition( CAVE_WAND_NAV, headPos );\par
+\tab glPushMatrix();\par
+\tab glTranslatef( headPos[0], headPos[1], headPos[2] );\par
+\par
+\tab CAVEGetVector( CAVE_WAND_FRONT_NAV, headVec );\par
+\tab glBegin( GL_LINES );\par
+\tab\tab glColor3f( 0.99,0.99,0.99 );\par
+\tab\tab glVertex3f( 0, 0, 0 );\par
+\tab\tab glVertex3f(headVec[0], headVec[1], headVec[2] );\par
+\tab glEnd();\par
+\tab CAVEGetVector( CAVE_WAND_BACK_NAV, headVec );\par
+\tab glBegin( GL_LINES );\par
+\tab\tab glColor3f( 0.5,0.5,0.5 );\par
+\tab\tab glVertex3f( 0, 0, 0 );\par
+\tab\tab glVertex3f(headVec[0], headVec[1], headVec[2] );\par
+\tab glEnd();\par
+\tab CAVEGetVector( CAVE_WAND_LEFT_NAV, headVec );\par
+\tab glBegin( GL_LINES );\par
+\tab\tab glColor3f( 0.99,0.99,0.99 );\par
+\tab\tab glVertex3f( 0, 0, 0 );\par
+\tab\tab glVertex3f(headVec[0], headVec[1], headVec[2] );\par
+\tab glEnd();\par
+\tab CAVEGetVector( CAVE_WAND_RIGHT_NAV, headVec );\par
+\tab glBegin( GL_LINES );\par
+\tab\tab glColor3f( 0.5,0.5,0.5 );\par
+\tab\tab glVertex3f( 0, 0, 0 );\par
+\tab\tab glVertex3f(headVec[0], headVec[1], headVec[2] );\par
+\tab glEnd();\par
+\tab CAVEGetVector( CAVE_WAND_UP_NAV, headVec );\par
+\tab glBegin( GL_LINES );\par
+\tab\tab glColor3f( 0.99,0.99,0.99 );\par
+\tab\tab glVertex3f( 0, 0, 0 );\par
+\tab\tab glVertex3f(headVec[0], headVec[1], headVec[2] );\par
+\tab glEnd();\par
+\tab CAVEGetVector( CAVE_WAND_DOWN_NAV, headVec );\par
+\tab glBegin( GL_LINES );\par
+\tab\tab glColor3f( 0.5,0.5,0.5 );\par
+\tab\tab glVertex3f( 0, 0, 0 );\par
+\tab\tab glVertex3f(headVec[0], headVec[1], headVec[2] );\par
+\tab glEnd();\par
+\par
+\par
+\tab glPopMatrix();\par
+\par
+\tab\cf2 // Exercise 1, Step 13, Part 1\par
+\cf0\tab\cf2 // glEnable( GL_LIGHTING );\par
+\cf0\tab\cf2 //end nav vectors test\par
+\par
+\par
+\cf0\tab\cf2 //triangle 1\par
+\cf0\tab glPushMatrix();\par
+\par
+\tab glTranslatef( 0, 0, -2.0 );\par
+\par
+\tab glRotatef( rotateAmt, 0, 1, 0 );\par
+\par
+\tab glBegin( GL_TRIANGLES );\par
+\tab\tab glColor3f( 0.7, 0.7, 0.7 );\par
+\tab\tab glVertex3f( -1.0, -0.5, 0.0 );\par
+\tab\tab glVertex3f(  0.0,  1.0, 0.0 );\par
+\tab\tab glVertex3f(  1.0, -0.5, 0.0 );\par
+\tab glEnd();\par
+\par
+\tab glPopMatrix();\par
+\par
+\tab\cf2 //triangle 2\par
+\cf0\tab glPushMatrix();\par
+\par
+\tab glTranslatef( -6, 0, 0.0 );\par
+\par
+\tab\cf2 // Exercise 1, Step 13, Part 2\par
+\cf0\tab\cf2 /* The triangle below has been deleted:\par
+\tab glBegin( GL_TRIANGLES );\par
+\tab\tab glColor3f( 0.99, 0.7, 0.7 );\par
+\tab\tab glVertex3f( -1.0, -0.5, 0.0 );\par
+\tab\tab glVertex3f(  0.0,  1.0, 0.0 );\par
+\tab\tab glVertex3f(  1.0, -0.5, 0.0 );\par
+\tab glEnd();\par
+\tab */\par
+\par
+\cf0\tab\cf2 // The square now rotates by the x-axis\par
+\cf0\tab glRotatef( rotateAmt, 1, 0, 0 );\par
+\par
+\tab\cf2 // The square is "2 units" in size as it is 2 units x 2 units.\par
+\cf0\tab glBegin(GL_QUADS);\par
+\tab\tab glColor3f(1.0f, 0.5f, 0.0f);\par
+\tab\tab glVertex3f(-1.0f, -1.0f, 0.0f);\par
+\tab\tab glVertex3f(+1.0f, -1.0f, 0.0f);\par
+\tab\tab glVertex3f(+1.0f, +1.0f, 0.0f);\par
+\tab\tab glVertex3f(-1.0f, +1.0f, 0.0f);\par
+\tab glEnd();\par
+\par
+\tab glPopMatrix();\par
+\par
+\tab\cf2 //triangle 3\par
+\cf0\tab glPushMatrix();\par
+\par
+\tab glTranslatef( 6, 0, 0.0 );\par
+\par
+\tab\cf2 // Exercise 1, Step 13, Part 3\par
+\cf0\tab\cf2 // The triangle already rotates about the y-axis\par
+\cf0\tab glRotatef( rotateAmt, 0, 1, 0 );\par
+\par
+\tab\cf2 // The verticies have been colored below\par
+\cf0\tab glBegin( GL_TRIANGLES );\par
+\tab\tab glColor3f(1.0f, 0.0f, 0.0f);\par
+\tab\tab glVertex3f( -1.0, -0.5, 0.0 );\par
+\par
+\tab\tab glColor3f(0.0f, 1.0f, 0.0f);\par
+\tab\tab glVertex3f(  0.0,  1.0, 0.0 );\par
+\par
+\tab\tab glColor3f(0.0f, 0.0f, 1.0f);\par
+\tab\tab glVertex3f(  1.0, -0.5, 0.0 );\par
+\tab glEnd();\par
+\par
+\tab glPopMatrix();\par
+\par
+\tab\cf2 //triangle 4\par
+\cf0\tab glPushMatrix();\par
+\par
+\tab glTranslatef( 0, 0, -6.0 );\par
+\par
+\tab\cf2 // Exercise 1, Step 13, Part 4\par
+\par
+\cf0\tab\cf2 /* The triangle has been deleted:\par
+\tab glBegin( GL_TRIANGLES );\par
+\tab\tab glColor3f( 0.7, 0.7, 0.99 );\par
+\tab\tab glVertex3f( -1.0, -0.5, 0.0 );\par
+\tab\tab glVertex3f(  0.0,  1.0, 0.0 );\par
+\tab\tab glVertex3f(  1.0, -0.5, 0.0 );\par
+\tab glEnd();\par
+\tab */\par
+\cf0\tab\cf1 static\cf0  \cf1 float\cf0  pyramidRotation = 0.0f;\par
+\par
+\tab\cf2 // The pyramid rotates by 0.2f per frame\par
+\cf0\tab pyramidRotation += 0.2f;\par
+\tab glRotatef(pyramidRotation, 0, 0, 1);\par
+\par
+\tab\cf1 float\cf0  halfSqrt3 = 1.732f / 2.0f;\par
+\par
+\tab\cf2 // The new pyramid's geometry\par
+\cf0\tab glBegin(GL_TRIANGLES);\par
+\tab\tab\cf2 // "Bottom" face\par
+\cf0\tab\tab glColor3f(1.0f, 0.0f, 0.0f);\par
+\tab\tab glVertex3f(-1.0f, -halfSqrt3, -halfSqrt3);\par
+\tab\tab glVertex3f(0.0f, +halfSqrt3, -halfSqrt3);\par
+\tab\tab glVertex3f(+1.0f, -halfSqrt3, -halfSqrt3);\par
+\par
+\tab\tab\cf2 // "Front" face\par
+\cf0\tab\tab glColor3f(0.0f, 1.0f, 0.0f);\par
+\tab\tab glVertex3f(-1.0f, -halfSqrt3, -halfSqrt3);\par
+\tab\tab glVertex3f(+1.0f, -halfSqrt3, -halfSqrt3);\par
+\tab\tab glVertex3f(0.0f, 0.0f, +halfSqrt3);\par
+\par
+\tab\tab\cf2 // "Left" face\par
+\cf0\tab\tab glColor3f(0.0f, 0.0f, 1.0f);\par
+\tab\tab glVertex3f(+1.0f, -halfSqrt3, -halfSqrt3);\par
+\tab\tab glVertex3f(0.0f, +halfSqrt3, -halfSqrt3);\par
+\tab\tab glVertex3f(0.0f, 0.0f, +halfSqrt3);\par
+\par
+\tab\tab\cf2 // "Right" face\par
+\cf0\tab\tab glColor3f(1.0f, 1.0f, 0.0f);\par
+\tab\tab glVertex3f(0.0f, +halfSqrt3, -halfSqrt3);\par
+\tab\tab glVertex3f(-1.0f, -halfSqrt3, -halfSqrt3);\par
+\tab\tab glVertex3f(0.0f, 0.0f, +halfSqrt3);\par
+\par
+\tab glEnd();\par
+\par
+\par
+\tab glPopMatrix();\par
+\par
+\tab glPopMatrix();\par
+\par
+\}\par
+\f1\par
+}
+ 
