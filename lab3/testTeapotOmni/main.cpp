@@ -58,6 +58,10 @@ static HHLRC ghHLRC = 0;
 /* Shape id for shape we will render haptically. */
 HLuint gTeapotShapeId;
 
+// == Lab 3 Added Code =========================================================================
+HLuint gSphereShapeId;
+// == Lab 3 Added Code =========================================================================
+
 #define CURSOR_SCALE_SIZE 60
 static double gCursorScale;
 static GLuint gCursorDisplayList = 0;
@@ -161,8 +165,20 @@ int stereo=1; // if stereo=0 rendering mono view
 void HLCALLBACK touchShapeCallback(HLenum event, HLuint object, HLenum thread, 
                                    HLcache *cache, void *userdata)
 {
-	touched=!touched;
-	color();
+	// == Lab 3 Added Code =========================================================================
+	if (object == gTeapotShapeId)
+	{
+		touched=!touched;
+		color();
+	}
+	else
+	{
+		cout << "Yay, you poked the sphere!" << endl;
+
+		// Move the camera
+		cameraAngleX += 30;
+	}
+	// == Lab 3 Added Code =========================================================================
 }
 #endif
 
@@ -558,6 +574,15 @@ void drawObject(){
 		timer.start();  //=====================================
 
 		drawTeapot();           // render with vertex array, glDrawElements()
+
+	// == Lab 3 Added Code =========================================================================
+	glPushMatrix();
+		glTranslatef(5, 0, 0);
+		glutSolidSphere(1, 16, 16);
+	glPopMatrix();
+	// == Lab 3 Added Code =========================================================================
+
+
 	glPopMatrix();
     timer.stop();   //=====================================
 }
@@ -733,6 +758,10 @@ void initHL()
     // Generate id's for the teapot shape.
     gTeapotShapeId = hlGenShapes(1);
 
+	// == Lab 3 Added Code =========================================================================
+	gSphereShapeId = hlGenShapes(1);
+	// == Lab 3 Added Code =========================================================================
+
 	 // Setup event callbacks.
     hlAddEventCallback(HL_EVENT_TOUCH, HL_OBJECT_ANY, HL_CLIENT_THREAD, 
                        &touchShapeCallback, NULL);
@@ -749,6 +778,11 @@ void exitHandler()
 {
     // Deallocate the sphere shape id we reserved in initHL.
     hlDeleteShapes(gTeapotShapeId, 1);
+
+	// == Lab 3 Added Code =========================================================================
+    hlDeleteShapes(gSphereShapeId, 1);
+	// == Lab 3 Added Code =========================================================================
+
 
     // Free up the haptic rendering context.
     hlMakeCurrent(NULL);
@@ -833,6 +867,22 @@ void drawSceneHaptics()
 
     // End the shape.
     hlEndShape();
+
+	// == Lab 3 Added Code =========================================================================
+	hlBeginShape(HL_SHAPE_FEEDBACK_BUFFER, gSphereShapeId);
+		glPushMatrix();
+
+			glTranslatef(0, 0, cameraDistance);
+			glRotatef(cameraAngleX, 1, 0, 0);   // pitch
+			glRotatef(cameraAngleY, 0, 1, 0);   // heading
+
+			glTranslatef(5, 0, 0);
+			glutSolidSphere(1, 16, 16);
+
+		glPopMatrix();
+
+	hlEndShape();
+	// == Lab 3 Added Code =========================================================================
 
     // End the haptic frame.
     hlEndFrame();

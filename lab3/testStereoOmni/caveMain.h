@@ -16,4 +16,7 @@
 #include <HD/hd.h>
 #include <HDU/hduVector.h>
 
+extern int theSphereId;
+extern bool objectsAreTouched;
+
 #endif // PointManipulationAfx_H_

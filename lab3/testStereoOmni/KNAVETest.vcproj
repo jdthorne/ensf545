@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(3DTOUCH_BASE)\utilities\include&quot;;&quot;$(3DTOUCH_BASE)\include&quot;;&quot;C:\ENSF 519.45\KNAVELib\include&quot;"
+				AdditionalIncludeDirectories="&quot;$(3DTOUCH_BASE)\utilities\include&quot;;&quot;$(3DTOUCH_BASE)\include&quot;;&quot;C:\ENSF 545\KNAVELib\include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"

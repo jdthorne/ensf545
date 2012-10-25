@@ -20,6 +20,9 @@ void drawEye(int eye);
 void drawInStereo();
 void drawOpenGL();
 
+bool objectsAreTouched = false;
+int theSphereId;
+
 #ifndef WIN32
 #include <sys/time.h>
 #endif

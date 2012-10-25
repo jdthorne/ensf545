@@ -9,6 +9,7 @@
 #include <assert.h>
 
 #include <vector>
+#include <gl/glut.h>
 
 using namespace std;
 
@@ -171,6 +172,20 @@ void FaceManager::drawFaces()
     {
 		drawFace(i);
 	}
+
+	glPushMatrix();
+	glTranslatef( -1.0, 1.0, -2.0 );
+	if (objectsAreTouched)
+	{
+		glColor3f( 1.0, 0.0, 0.0 );
+	}
+	else 
+	{
+		glColor3f( 0.0, 1.0, 1.0 );
+	}
+	glutSolidSphere(1.0, 20, 16);
+	glPopMatrix();
+	glFlush ();
     
 }
 

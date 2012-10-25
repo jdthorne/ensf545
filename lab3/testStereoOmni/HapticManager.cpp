@@ -64,6 +64,9 @@ private:
     HLuint m_effectName;       
 	double gCursorScale;
 	HLuint gMyShapeId;
+
+	HLuint gMyShapeId2;
+
 	vector<HLuint> myShapesId;
 
 
@@ -164,7 +167,12 @@ void HapticManager::setup(IFaceManager *pFaceManager)
     hlAddEventCallback(HL_EVENT_1BUTTONUP, HL_OBJECT_ANY,
         HL_CLIENT_THREAD, hlButtonUpCB, this);
 
-    
+	gMyShapeId2 = hlGenShapes(7);
+	theSphereId = gMyShapeId2;
+	hlAddEventCallback(HL_EVENT_TOUCH, HL_OBJECT_ANY, HL_CLIENT_THREAD, hlTouchCB, this);
+	hlAddEventCallback(HL_EVENT_UNTOUCH, HL_OBJECT_ANY, HL_CLIENT_THREAD, hlTouchCB, this);
+	hlAddEventCallback(HL_EVENT_1BUTTONDOWN, HL_OBJECT_ANY, HL_CLIENT_THREAD, hlButtonDownCB, this);
+	hlAddEventCallback(HL_EVENT_1BUTTONUP, HL_OBJECT_ANY, HL_CLIENT_THREAD, hlButtonUpCB, this);
 }
 
 
@@ -284,6 +292,11 @@ void HapticManager::feelPoints()
         hlEndShape();
     //}
 
+	hlBeginShape(HL_SHAPE_FEEDBACK_BUFFER, gMyShapeId2);
+	hlTouchableFace(HL_FRONT_AND_BACK);
+	m_pFaceManager->drawFaces();
+	hlEndShape();
+
     // Call any event callbacks that have been triggered.*/
     hlCheckEvents();
     hlEndFrame();
@@ -299,6 +312,11 @@ void HLCALLBACK HapticManager::hlTouchCB(HLenum event, HLuint object,
                                          void *userdata)
 {
 	 //Beep( 750, 300 );
+	if (object == theSphereId)
+	{
+  	   cout << "Ouch!" << endl;
+	   objectsAreTouched = !objectsAreTouched;
+	}
 }
 
 
