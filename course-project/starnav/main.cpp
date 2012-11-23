@@ -18,6 +18,9 @@
 #include <GL/glut.h>
 #include "teapot.h"
 
+#include "Starnav.h"
+Starnav* starnav;
+
 // stereoscopic view parameters begin
 
 typedef struct {
@@ -165,6 +168,9 @@ int stereo=1; // if stereo=0 rendering mono view
 void HLCALLBACK touchShapeCallback(HLenum event, HLuint object, HLenum thread, 
                                    HLcache *cache, void *userdata)
 {
+
+	return;
+
 	// == Lab 3 Added Code =========================================================================
 	if (object == gTeapotShapeId)
 	{
@@ -766,6 +772,8 @@ void initHL()
 	gSphereShapeId = hlGenShapes(1);
 	// == Lab 3 Added Code =========================================================================
 
+	starnav = new Starnav();
+
 	 // Setup event callbacks.
     hlAddEventCallback(HL_EVENT_TOUCH, HL_OBJECT_ANY, HL_CLIENT_THREAD, 
                        &touchShapeCallback, NULL);
@@ -849,6 +857,10 @@ void drawSceneHaptics()
     hlMaterialf(HL_FRONT_AND_BACK, HL_STATIC_FRICTION, 0.2f);
     hlMaterialf(HL_FRONT_AND_BACK, HL_DYNAMIC_FRICTION, 0.3f);
 
+	// Actually render haptics
+	starnav->renderAllHaptics();
+
+		/*
     // Start a new haptic shape.  Use the feedback buffer to capture OpenGL 
     // geometry for haptic rendering.
     hlBeginShape(HL_SHAPE_FEEDBACK_BUFFER, gTeapotShapeId);
@@ -871,7 +883,6 @@ void drawSceneHaptics()
 
     // End the shape.
     hlEndShape();
-
 	// == Lab 3 Added Code =========================================================================
 	hlBeginShape(HL_SHAPE_FEEDBACK_BUFFER, gSphereShapeId);
 		glPushMatrix();
@@ -886,6 +897,7 @@ void drawSceneHaptics()
 		glPopMatrix();
 
 	hlEndShape();
+	*/
 	// == Lab 3 Added Code =========================================================================
 
     // End the haptic frame.
@@ -1070,12 +1082,15 @@ void drawEyeLookAt(){
 }
 
 void drawScene(){
-	drawObject();
+	//drawObject();
 	#ifdef HAPTIC
 	drawHapticCursor();
 	#endif
-	showInfo();
-    showFPS();
+	//showInfo();
+    //showFPS();
+
+	starnav->simulate();
+	starnav->renderAll();
 }
 
 void normalise(XYZ *p)
