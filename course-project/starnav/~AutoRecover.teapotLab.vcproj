@@ -171,11 +171,35 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\Asteroid.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\main.cpp"
 				>
 			</File>
 			<File
+				RelativePath=".\Mesh.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Physics.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Ship.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Starnav.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Timer.cxx"
+				>
+			</File>
+			<File
+				RelativePath=".\Vector.cpp"
 				>
 			</File>
 		</Filter>
@@ -185,11 +209,43 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\Asteroid.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Helpers.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Mesh.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Physics.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Ship.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ShipMesh.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Starnav.h"
+				>
+			</File>
+			<File
 				RelativePath=".\teapot.h"
 				>
 			</File>
 			<File
 				RelativePath=".\Timer.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Vector.h"
 				>
 			</File>
 		</Filter>
