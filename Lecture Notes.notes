@@ -397,9 +397,333 @@ New VR Lab Room
    - Meet Friday in ENA06 at 3:00pm
    - Hiring tutors for ENCM339 ($15/hr)
 
-Schedule Coming Up 
-   - October 8th this week 
-   - October 
+Midterm - Next Week
+   - Covers everything to the end of October 18th's lecture
+   - 
+
+
+============================================================================================
+Force Feedback 
+
+Stylus Devices:
+   Haptic Interface Point - the point at which things happen (e.g. the tip of the pen)
+
+   Parallel vs Serial Links - whether the axes are one-after-the-other, or all at the same time
+   e.g. the Omni thing is serial.
+
+Exoskeleton Devices:
+   Can injure yourself
+
+Consideration for Selecting Haptic Devices
+   This slide looked important.
+
+What is VR?
+   A user interface that involves real-time stimulation through multiple sensorial channels
+   - Vision, Sound, Touch, Smell, Taste
+
+Input Devices
+   - Tracking (mechanical, optical, etc)
+   - Navigation Interfaces (trackball, probe)
+   - Gesture Interfaces
+
+Tracker Characteristics
+   - Accuracy (resolution)
+      - Noise
+      - Drift
+      - Sampling Rate (needs to be 2x the frequency of the signal; should be ~10x)
+   - Measurement Rate
+   - Latency
+
+   Mechanical Trackers  
+   - aka Exoskeletons
+
+   Magnetic Trackers
+   - Push AC through a magnet, receive on a DC line.
+   - Pros and Cons:
+      - Larger distances are difficult
+      - Receiver can be small
+
+   Optical Trackers 
+   - Tracks an IR point
+   - Can get confused by ambient lighting or obstacles
+   - Can either have camera on ceiling look at user, or camera on user look at ceiling
+   - Think of motion tracking for movies
+
+   Magnetic vs Optical Trackers 
+   - Magnetic has 6 DOF, optical has 3 + 3 interpreted
+   - Magnetic is screwed up by metal 
+   - Optical requires line of sight 
+   - Optical has better sampling rate and accuracy 
+   - Magnetic has a smaller work envelope.
+
+Response Speed
+   Visual needs to be 100ms
+   Haptics need to be 50ms
+   Want 100% margin for error -> need 25ms (= 40fps)
+
+SGI Computers
+   Defined modern graphics cards 
+   64MB to 16GB of memory 
+
+Graphics Rendering Pipeline 
+   Application (what are we doing?)
+   geometry    (what exactly does it look like?)
+   Rasterizer  (put it in a buffer / on screen)
+
+   Triangles are faster than quads
+
+Buffers
+   - Z Buffer 
+   - Frame buffer (2x for double buffering)
 
 
 
+============================================================================================
+Studying for Midterm
+
+Dot Product: (x*x) + (y*y) + (z*z)
+Cross Product: i(yz - zy) - j(xz - zx) + k(yx - yx)
+
+Sphere: x^2 + y^2 + z^2 = r^2
+
+Matrix Multiplication: Row * Column
+
+Rotation Matricies:  
+   - cos goes along the diagonal
+   - sin goes - / +
+   - sin is negated for y (same as cross product)
+
+Order Matters: (Old)(Transformation) = (New)
+
+Graphics APIs: 
+   - OpenGL/D3D for graphics
+   - Glut for UI
+   - OpenHaptics for touch
+   - VRML for high-level design
+
+Lighting Calculations:
+   - Color =   (objectColor * ambientLight) 
+             + (objectColor * lightColor * (normal . lightDirection))
+             + (objectColor * lightColor * (halfBetweenLightAndEye . lightDirection))
+
+GL Viewing
+   - Matrix maps lookAt to -Z axis, eye to origin, up to y-axis
+   - Clipping volume is what you can actually see 
+   - Frustrum is a slice of the clipping volume
+
+3D Stereo Video
+   - Need to consider accomodation (focal length of eyes), convergence (eye rotation), 
+                      binocular disparity (differences by eyes), motion parallax (relative
+                      movement of points with respect to head)
+   - Can use two cameras, or one camera with two frustrums
+
+   Good stereo is made with:
+      - Congruence of images
+      - Avoidance of vertical parallax
+      - Wide separation of eyes (better depth, but discomfort)
+      - Minimal cross-talk (eyes seeing eachother's images)
+
+Stereo Displays
+   Personal Displays - works for single user; can be head-mounted, floor-supported,
+                       or autostereoscopic
+   OLEDs - don't need backlight, no intrinsic limits on resolution.  Good for HMDs,
+           monitors.
+
+   Floor-supported - HMDs, but with no associated weight
+   Autostereoscopic - passive (small viewing area) or active (large viewing area)
+                    - exists in cell phones, 3DS
+   Holographic - floating in space, requires glasses
+               - can be monitor or projector based
+   Workbench - big table with projector underneath
+   CAVE or RAVE - a whole bunch of projectors
+   3D Glasses - Anaglyph, polarized, shutter, pulfrich glasses
+
+   Resolution & Price is better with small monitor-style displays, size and users 
+   are better with larger displays
+
+Haptic Displays
+   Skin "sensors" run at 10, 20-50 or 100-300 Hz
+
+   Gloves - can use vibration, temperature
+   Mechanical - exoskeleton, wall or desk mounted (like the omni pen things)
+              - also joystick
+              - serial vs parallel regarding multiple axes
+              - can use cables and pullies to be better than vibration
+
+   Mechanical is more expensive, provides more force, more flexible 
+   Gloves are cheaper, run at higher frequency 
+
+Input Devices
+   Trackers - mechanical, optical, ultrasound, inertial
+   Navigation Interfaces - Cube, mouse, trackball, 3D probe 
+   Gesture interfaces - Gloves
+
+   Worry about accuracy, precision, noise, drift, latency
+
+   Magnetic tracker error 
+   - noise = distance^4
+   - metal = distance^4 / (to-metal^3 + from-metal^3)
+   - 
+
+   AC vs DC - AC has better resolution, smaller envelope
+   DC is immune to non-ferromagnetic metals, AC induces a charge 
+
+
+============================================================================================
+Graphics Cards... or something
+
+Lab Demos
+   - Print out five of the marking sheets
+   - Groups will give you feedback
+   - Give all the sheets to the prof
+
+Due on Tuesday
+   - Topic for Presentation
+   - Proposal isn't due for a while - the idea is to know what you're doing first.
+
+Stuff to Do
+   - Consent form for research proposal (!)
+
+
+
+============================================================================================
+I have no idea what's going on
+
+Something about interview survey things - make them good.
+
+
+============================================================================================
+Presentations
+
+Team 9 - Francis and Sara
+   Virtual Reality in Games
+
+   Contents [ 9 / 9 ]
+
+      For a given application
+      [x] What are the significances of this application in a given area?
+      [x] What input/output devices VR engines and software are used?
+      [x] How did the applications take into account user interaction?
+      [x] Which aspects of the application are your favors?  Why?
+      [x] Comments on the pros and cons of the application
+
+      For a proposed application
+      [x] Why does your team select this area and propose this application?
+      [x] What types of expertise can your team contribute to this application?
+      [x] What input/output devices, VR engines and software are needed for this application?
+      [x] How would your team take care of user interaction in this application?
+
+   Questions [ 1 / 1 ]
+
+      [x] Coordinate to answering questions
+      [x] Ability to listen to questions, clarity of answers
+
+   Additional comments
+
+      Interesting presentation; would love the gaming system!
+
+
+Team ? - James and Ming
+
+   Contents [ 9 / 9 ]
+
+      For a given application
+      [x] What are the significances of this application in a given area?
+      [x] What input/output devices VR engines and software are used?
+      [x] How did the applications take into account user interaction?
+      [x] Which aspects of the application are your favors?  Why?
+      [x] Comments on the pros and cons of the application
+
+      For a proposed application
+      [x] Why does your team select this area and propose this application?
+      [x] What types of expertise can your team contribute to this application?
+      [x] What input/output devices, VR engines and software are needed for this application?
+      [x] How would your team take care of user interaction in this application?
+
+   Questions [ 1 / 1 ]
+
+      [x] Coordinate to answering questions
+      [x] Ability to listen to questions, clarity of answers
+
+   Additional comment
+
+      CadCave sounds like something I'd like to play with
+
+
+Team 4
+   VR in Medical Applications - ParioSim and Virtual Date
+
+   Contents [ 9 / 9 ]
+
+      For a given application
+      [x] What are the significances of this application in a given area?
+      [x] What input/output devices VR engines and software are used?
+      [x] How did the applications take into account user interaction?
+      [x] Which aspects of the application are your favors?  Why?
+      [x] Comments on the pros and cons of the application
+
+      For a proposed application
+      [x] Why does your team select this area and propose this application?
+      [x] What types of expertise can your team contribute to this application?
+      [x] What input/output devices, VR engines and software are needed for this application?
+      [x] How would your team take care of user interaction in this application?
+
+   Questions [ 1 / 1 ]
+
+      [x] Coordinate to answering questions
+      [x] Ability to listen to questions, clarity of answers
+
+   Additional comment
+
+      Anything that improves dentistry is good!
+
+
+Team Elizer and Justin
+   Education and Marketing
+
+   Contents [ 9 / 9 ]
+
+      For a given application
+      [x] What are the significances of this application in a given area?
+      [x] What input/output devices VR engines and software are used?
+      [x] How did the applications take into account user interaction?
+      [x] Which aspects of the application are your favors?  Why?
+      [x] Comments on the pros and cons of the application
+
+      For a proposed application
+      [x] Why does your team select this area and propose this application?
+      [x] What types of expertise can your team contribute to this application?
+      [x] What input/output devices, VR engines and software are needed for this application?
+      [x] How would your team take care of user interaction in this application?
+
+   Questions [ 1 / 1 ]
+
+      [x] Coordinate to answering questions
+      [x] Ability to listen to questions, clarity of answers
+
+   Additional comment
+
+Template
+   Elizer and Justin
+
+   Contents [ _ / 9 ]
+
+      For a given application
+      [ ] What are the significances of this application in a given area?
+      [ ] What input/output devices VR engines and software are used?
+      [ ] How did the applications take into account user interaction?
+      [ ] Which aspects of the application are your favors?  Why?
+      [ ] Comments on the pros and cons of the application
+
+      For a proposed application
+      [ ] Why does your team select this area and propose this application?
+      [ ] What types of expertise can your team contribute to this application?
+      [ ] What input/output devices, VR engines and software are needed for this application?
+      [ ] How would your team take care of user interaction in this application?
+
+   Questions [ _ / 1 ]
+
+      [ ] Coordinate to answering questions
+      [ ] Ability to listen to questions, clarity of answers
+
+   Additional comment
