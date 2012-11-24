@@ -299,7 +299,7 @@ int initGLUT(int argc, char **argv)
 ///////////////////////////////////////////////////////////////////////////////
 void initGL()
 {
-    glShadeModel(GL_SMOOTH);                    // shading mathod: GL_SMOOTH or GL_FLAT
+    glShadeModel(GL_FLAT);                    // shading mathod: GL_SMOOTH or GL_FLAT
     glPixelStorei(GL_UNPACK_ALIGNMENT, 4);      // 4-byte pixel alignment
 
     // enable /disable features
@@ -414,7 +414,7 @@ void initLights()
     glLightfv(GL_LIGHT0, GL_SPECULAR, lightKs);
 
     // position the light
-    float lightPos[4] = {0, 0, 20, 1}; // positional light
+    float lightPos[4] = {0, 0, 50, 1}; // positional light
     glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
 
     glEnable(GL_LIGHT0);                        // MUST enable each light source after configuration
@@ -508,8 +508,6 @@ void showInfo()
 ///////////////////////////////////////////////////////////////////////////////
 void showFPS()
 {
-	return;
-
     static Timer timer;
     static int count = 0;
     static stringstream ss;
@@ -990,7 +988,7 @@ void drawEye(int eye){
 		glFrustum(-frustumRight-dx0, frustumRight-dx0, -frustumTop, frustumTop,nNear,nFar);
 		glTranslatef(0+dx1,0,0);
 		glMatrixMode(GL_MODELVIEW);
-		glShadeModel(GL_SMOOTH);
+		//glShadeModel(GL_SMOOTH);
 		drawScene();
         glFlush();
 	}
@@ -1082,12 +1080,11 @@ void drawEyeLookAt(){
 }
 
 void drawScene(){
-	//drawObject();
+	showFPS();
+
 	#ifdef HAPTIC
 	drawHapticCursor();
 	#endif
-	//showInfo();
-    //showFPS();
 
 	starnav->simulate();
 	starnav->renderAll();

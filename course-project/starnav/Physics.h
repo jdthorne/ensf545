@@ -11,17 +11,23 @@ public:
 	~Physics(void);
 
 	void simulate(std::vector<Physics*>& collidableObjects);
+	void simulateHaptics();
 
 	virtual void render(bool haptics) = 0;
+	virtual void handleCollision();
+
+	bool collidesWith(Physics& other);
+	bool collidesWithAny(std::vector<Physics*>& collidableObjects);
 
 private:
-	void handleTouch(Vector cursorPosition);
+	void handleTouch(Vector cursorPosition, Vector devicePosition);
 
 protected:
 	Vector position;
 	Vector velocity;
+	Vector lastVelocity;
 
-	bool collided;
+	bool hapticEffectIsRunning;
 
 	unsigned int hapticId;
 	unsigned int effectId;

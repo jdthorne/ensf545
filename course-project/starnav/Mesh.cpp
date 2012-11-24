@@ -11,54 +11,41 @@
 
 using namespace std;
 
-Mesh::Mesh(const double points[])
+Mesh::Mesh(const double* points)
 {
-	for (int face = 0; points[face*3] < 999; face++)
+	displayListId = glGenLists(1);
+	glNewList(displayListId, GL_COMPILE);
+	glBegin(GL_TRIANGLES);
+	for (int i = 0; points[i] < 999; i += 6)
 	{
-		Triangle t;
-		for (int point = 0; point < 3; point++)
-		{
-			Point p;
-			p.x = points[(face*3) + point + 0];
-			p.y = points[(face*3) + point + 1];
-			p.z = points[(face*3) + point + 2];
-			t.points.push_back(p);
-		}
-		faces.push_back(t);
+		glNormal3f(points[i+0], points[i+1], points[i+2]);
+		glVertex3f(points[i+3], points[i+4], points[i+5]);
 	}
+	glEnd();
+	glEndList();
 }
 
 Mesh::~Mesh(void)
 {
 }
 
-void Mesh::render(Vector position)
+void Mesh::render(Vector position, double radius)
 {
 	glPushMatrix();
-	glTranslatef(position.x(), position.y(), position.z());
+	glTranslatef(position.x, position.y, position.z);
+	glScalef(radius, radius, radius);
 
-	glutSolidSphere(1, 16, 16);
-	//glScalef(0.2, 0.2, 0.2);
-
-	/*glBegin(GL_TRIANGLES);
-	for (unsigned int i = 0; i < faces.size() / 3; i++)
-	{
-		for (unsigned int p = 0; p < 3; p++)
-		{
-			glVertex3f(faces[i].points[p].x, faces[i].points[p].y, faces[i].points[p].z);
-		}
-	}
-	glEnd();*/
-
+	//glutSolidSphere(1, 16, 16);
+	glCallList(displayListId);
 
 	glPopMatrix();
 }
 
-void Mesh::renderHaptics(Vector position, unsigned int hapticId)
+void Mesh::renderHaptics(Vector position, double radius, unsigned int hapticId)
 {
 	hlBeginShape(HL_SHAPE_FEEDBACK_BUFFER, hapticId);
 
-	//render(position);
+	render(position, radius);
 
 	hlEndShape();
 }

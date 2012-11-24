@@ -1,10 +1,13 @@
 #include "Asteroid.h"
 #include "ShipMesh.h"
 
-Asteroid::Asteroid(Vector initialPosition, double radius)
-	: mesh(SHIP_MESH_POINTS)
+#include <GL/glut.h>
+
+Asteroid::Asteroid(Vector initialPosition, double initialRadius)
+	: mesh(ASTEROID_MESH_POINTS)
 {
 	position = initialPosition;
+	radius = initialRadius;
 }
 
 Asteroid::~Asteroid(void)
@@ -13,12 +16,15 @@ Asteroid::~Asteroid(void)
 
 void Asteroid::render(bool haptics)
 {
+	glShadeModel(GL_SMOOTH);
+	glColor3f(0.7, 0.4, 0.0);
+
 	if (haptics)
 	{
-		mesh.renderHaptics(position, hapticId);
+		mesh.renderHaptics(position, radius, hapticId);
 	}
 	else
 	{
-		mesh.render(position);
+		mesh.render(position, radius);
 	}
 }

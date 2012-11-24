@@ -17,12 +17,12 @@ struct Triangle
 class Mesh
 {
 public:
-	Mesh(const double points[]);
+	Mesh(const double* points);
 	virtual ~Mesh(void);
 
-	void render(Vector position);
-	void renderHaptics(Vector position, unsigned int hapticId);
+	void render(Vector position, double radius);
+	void renderHaptics(Vector position, double radius, unsigned int hapticId);
 
 private:
-	std::vector<Triangle> faces;
+	int displayListId;
 };

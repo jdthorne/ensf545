@@ -2,61 +2,52 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
-/**
- ******************************************************************************
- *
- *                   Vector
- *
- *  This class represents a 3-Vector.  It encapsulates the x, y, z positions,
- *  and contains tons of useful helpers.
- *
- ******************************************************************************
- */
+class Quaternion;
+
 class Vector
 {
 
 public:
    Vector();
    Vector(double x, double y, double z);
-   Vector(float coords[]);
-
-public: // Accessors
-   double x() const;
-   double y() const;
-   double z() const;
+   explicit Vector(const Quaternion& quaternion);
 
 public: // Operators
-   Vector& operator+= (const Vector& rhs);
-   Vector operator+ (const Vector& rhs) const;
-   Vector operator- (const Vector& rhs) const;
+   Vector& operator += (const Vector& rhs);
+   Vector operator + (const Vector& rhs) const;
+   Vector operator - (const Vector& rhs) const;
 
    Vector cross(const Vector& rhs) const;
    double dot(const Vector& rhs) const;
+
+   Vector rotate(const Quaternion& rotation) const;
 
    void normalize();
 
    Vector inverse() const;
    Vector normalized() const;
 
-   Vector reflected(const Vector normal) const;
-
    Vector multiplyElementsBy(const Vector& rhs) const;
+
+   Quaternion rotationTo(const Vector& lookAt) const;
 
    Vector boundedToMagnitude(double maxMagnitude) const;
 
    double magnitude() const;
    double distanceTo(const Vector rhs) const;
 
+   static const Vector intersectionBetweenLineAndSphere(Vector lineStart, Vector direction,
+                                                        Vector sphereCenter, double sphereRadius);
+
    static const Vector interpolate(Vector v1, Vector v2, double t);
 
-private:
-   double x_;
-   double y_;
-   double z_;
+public:
+   double x;
+   double y;
+   double z;
 };
 
 Vector operator*(const Vector& vector, double scalar);
-Vector operator*(double scalar, const Vector& vector);
 Vector operator/(const Vector& vector, double scalar);
 
 #endif

@@ -187,6 +187,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Quaternion.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\RenderHelpers.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Ship.cpp"
 				>
 			</File>
@@ -222,6 +230,14 @@
 			</File>
 			<File
 				RelativePath=".\Physics.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Quaternion.h"
+				>
+			</File>
+			<File
+				RelativePath=".\RenderHelpers.h"
 				>
 			</File>
 			<File
