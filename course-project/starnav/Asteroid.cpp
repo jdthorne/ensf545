@@ -3,10 +3,11 @@
 
 #include <GL/glut.h>
 
-Asteroid::Asteroid(Vector initialPosition, double initialRadius)
+Asteroid::Asteroid(Vector initialPosition, Vector drift, double initialRadius)
 	: mesh(ASTEROID_MESH_POINTS)
 {
 	position = initialPosition;
+	velocity = drift * 0.002;
 	radius = initialRadius;
 }
 

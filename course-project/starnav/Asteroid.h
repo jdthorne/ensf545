@@ -7,7 +7,7 @@
 class Asteroid : public Physics
 {
 public:
-	Asteroid(Vector position, double radius);
+	Asteroid(Vector position, Vector drift, double radius);
 	~Asteroid(void);
 
 	void render(bool haptics);

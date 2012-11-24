@@ -3,6 +3,7 @@
 #include "Physics.h"
 #define WIN32
 #include <HL/hl.h>
+#include "Starnav.h"
 
 Physics::Physics(void)
 	: radius(1)
@@ -57,7 +58,7 @@ void Physics::simulateHaptics()
 		{
 			hlStartEffect(HL_EFFECT_SPRING, effectId);
 		}
-		handleTouch(cursorPosition, devicePosition);
+		handleTouch(cursorPosition, position - (cursorOffset.normalized() * radius));
 		hapticEffectIsRunning = true;
 	}
 	else if (cursorOffset.magnitude() > radius * 1.1)
@@ -74,6 +75,7 @@ void Physics::simulate(std::vector<Physics*>& collidableObjects)
 {
 	// Basic Kinematics
 	position += velocity;
+
 	velocity = velocity * 0.999;
 
 	// Collisions

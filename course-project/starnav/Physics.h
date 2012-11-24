@@ -22,7 +22,7 @@ public:
 private:
 	void handleTouch(Vector cursorPosition, Vector devicePosition);
 
-protected:
+public:
 	Vector position;
 	Vector velocity;
 	Vector lastVelocity;

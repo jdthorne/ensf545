@@ -8,6 +8,7 @@
 Ship::Ship(void)
 	: mesh(SHIP_MESH_POINTS)
 	, orientation(Quaternion::SPIN_X)
+	, exploded(false)
 {
 	position = Vector(0, 0, -7);
 	radius = 0.2;
@@ -22,20 +23,19 @@ void Ship::render(bool haptics)
 	glShadeModel(GL_FLAT);
 	glColor3f(0.7, 0.7, 0.7);
 
-	if (position.z > 7)
+	if (position.z > 8.5)
 	{
-		MessageBox(0, "Hooray, you won!", "Victory and Cake", 0);
-		exit(0);
+		exploded = true;
 	}
 
 	glPushMatrix();
 
 	glTranslatev(position);
 
-	if (velocity.magnitude() != 0)
+	if (velocity.magnitude() > 0.0001)
 	{
 		Quaternion instantOrientation = Vector(0, 1, 0).rotationTo(velocity);
-		orientation = Quaternion::slerp(orientation, instantOrientation, 0.995);
+		orientation = Quaternion::slerp(orientation, instantOrientation, 0.95);
 	}
 	glRotateq(orientation);
 	glScalef(1.5, 3, 1.5);
@@ -54,6 +54,18 @@ void Ship::render(bool haptics)
 
 void Ship::handleCollision()
 {
-	MessageBox(0, "Oh no, you exploded!", "Death and sadness", 0);
-	exit(1);
+	exploded = true;
+}
+
+void Ship::push(Vector newPosition)
+{
+	velocity = Vector(0, 0, 0);
+	Vector change = newPosition - position;
+	if (change.magnitude() > 0.001)
+	{
+		Quaternion instantOrientation = Vector(0, 1, 0).rotationTo(change.normalized());
+		orientation = Quaternion::slerp(orientation, instantOrientation, 0.9)	;
+	}
+
+	position = newPosition;
 }

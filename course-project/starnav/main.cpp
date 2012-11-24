@@ -684,6 +684,10 @@ void keyboardCB(unsigned char key, int x, int y)
 		color();
 		break;
 
+	case 'r':
+	case 'R':
+		starnav->reset();
+
     default:
         ;
     }
