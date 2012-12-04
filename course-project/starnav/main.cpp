@@ -1084,8 +1084,6 @@ void drawEyeLookAt(){
 }
 
 void drawScene(){
-	showFPS();
-
 	#ifdef HAPTIC
 	drawHapticCursor();
 	#endif

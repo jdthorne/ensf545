@@ -1,6 +1,6 @@
 #pragma once
 
-#define DIRECT_CONTROL
+//#define DIRECT_CONTROL
 
 #include <vector>
 
